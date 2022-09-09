@@ -5,6 +5,8 @@ const app = express();
 
 app.use("/", routers);
 
-app.listen(3000, () => {
+/* app.listen(3000, () => {
   console.log("Servidor rodando");
-});
+}); */
+
+export default app;

@@ -4,7 +4,7 @@
   "description": "Repositorio referente a disciplina de projeto integrador II",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
+    "start": "tsc && node dist/server.js",
     "test": "eslint . --ext .ts"
   },
   "repository": {
