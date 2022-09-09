@@ -1,11 +1,13 @@
-import { Router, Request, Response} from "express";
-import rotasAluno from "./alunos";
+import { Router, Request, Response } from "express";
+import routeLogin from "./login";
+import routeHome from "./home";
+import routeProfile from "./profile";
+import routeRides from "./rides";
 const routers = Router();
 
-routers.get("/", (req: Request, res: Response) => {
-    res.send("Ola!");
-});
-
-routers.use("/alunos", rotasAluno);
+routers.use("/", routeLogin);
+routers.use("/home", routeHome);
+routers.use("/profile", routeProfile);
+routers.use("/rides", routeRides);
 
 export default routers;
