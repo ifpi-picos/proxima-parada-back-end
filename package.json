@@ -4,8 +4,8 @@
   "description": "Repositorio referente a disciplina de projeto integrador II",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node ./dist/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc && node dist/app.js",
+    "test": "eslint . --ext .ts"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,9 @@
     "@types/express": "^4.17.13",
     "@types/node": "^18.7.16",
     "nodemon": "^2.0.19",
-    "typescript": "^4.8.2"
+    "typescript": "^4.8.2",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/parser": "^5.36.2",
+    "eslint": "^8.23.0"
   }
 }
