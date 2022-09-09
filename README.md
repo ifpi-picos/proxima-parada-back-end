@@ -6,12 +6,12 @@ O [nodemon](https://nodemon.io/) é uma biblioteca de código aberto que ajuda b
 
 Para instalar o nodemon, é necessário ter o Node.js e em seguida executar o seguinte comando no terminal:
 
-'''html
+```html
 npm install -g nodemon
-'''
+```
 
 Ou
 
-'''html
+```html
 npm install -D nodemon
-'''
+```
