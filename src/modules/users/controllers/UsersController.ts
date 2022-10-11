@@ -10,12 +10,17 @@ export default class UsersController {
 
         const createUser = new CreateUserService();
 
-        const user = await createUser.execute({
-            name,
-            email,
-            password,
-            occupation,
-        });
+        const user = await createUser
+            .execute({
+                name,
+                email,
+                password,
+                occupation,
+            })
+            .catch(error => {
+                response.statusCode = 400;
+                return error;
+            });
 
         return response.json(user);
     }
