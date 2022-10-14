@@ -1,1 +1,1 @@
-{ "execMap" : { "ts" : "tsc && node dist/server.js" } }
+{ "execMap" : { "ts" : "tsc && node dist/shared/http/server.js" } }
