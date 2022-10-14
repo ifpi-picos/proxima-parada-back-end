@@ -10,7 +10,7 @@ export default class SessionsController {
 
         const createSession = new CreateSessionsService();
 
-        const user = await createSession
+        const { user, token } = await createSession
             .execute({
                 email,
                 password,
@@ -20,6 +20,18 @@ export default class SessionsController {
                 return error;
             });
 
-        return response.json(user);
+        const userReturn = {
+            id: user?.id,
+            name: user?.name,
+            email: user?.email,
+            phone_number: user?.phone_number,
+            occupation: user?.occupation,
+            avatar: user?.avatar,
+            status: user?.status,
+            created_at: user?.created_at,
+            updated_at: user?.updated_at,
+        };
+
+        return response.json({ userReturn, token });
     }
 }

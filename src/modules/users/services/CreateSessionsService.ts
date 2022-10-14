@@ -3,7 +3,6 @@ import { User } from "@prisma/client";
 import { compare } from "bcryptjs";
 import { prismaClient } from "../../../database/prismaClient";
 import AppError from "../../../shared/errors/AppError";
-import authConfig from "../../../config/auth";
 
 interface IRequest {
     email: string;
@@ -33,9 +32,11 @@ class CreateSessionsService {
             throw new AppError("Incorrect email/password combination.", 401);
         }
 
-        const token = sign({}, authConfig.jwt.secret, {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const token = sign({}, process.env.JWT_SECRET!, {
             subject: user.id,
-            expiresIn: authConfig.jwt.expiresIn,
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            expiresIn: process.env.TOKEN_EXPIREIN!,
         });
 
         return {
