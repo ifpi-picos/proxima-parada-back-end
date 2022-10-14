@@ -15,11 +15,3 @@ Ou
 ```html
 npm install -D nodemon
 ```
-
-
-
-Para resolver o problema do prisma adicione isso no arquivo .env
-```html
-PRISMA_CLIENT_ENGINE_TYPE="binary"
-PRISMA_CLI_QUERY_ENGINE_TYPE="binary"
-```
