@@ -16,7 +16,7 @@ export default class SessionsController {
                 password,
             })
             .catch(error => {
-                response.statusCode = 400;
+                response.statusCode = 401;
                 return error;
             });
 
