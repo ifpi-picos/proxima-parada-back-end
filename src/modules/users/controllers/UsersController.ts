@@ -10,7 +10,7 @@ export default class UsersController {
 
         const createUser = new CreateUserService();
 
-        await createUser
+        const user = await createUser
             .execute({
                 name,
                 email,
@@ -22,10 +22,6 @@ export default class UsersController {
                 return error;
             });
 
-        return response.json({
-            name,
-            email,
-            occupation,
-        });
+        return response.json(user);
     }
 }

@@ -15,7 +15,7 @@ interface IResponse {
 }
 
 class CreateSessionsService {
-    public async execute({ email, password }: IRequest): Promise<IResponse> {
+    public async execute({ email, password }: IRequest) {
         const user = await prismaClient.user.findFirst({
             where: {
                 email,
@@ -23,13 +23,13 @@ class CreateSessionsService {
         });
 
         if (!user) {
-            throw new AppError("Incorrect email/password combination.", 401);
+            throw new AppError("Combinação incorreta de e-mail/senha.", 401);
         }
 
         const passwordConfirmed = await compare(password, user.password);
 
         if (!passwordConfirmed) {
-            throw new AppError("Incorrect email/password combination.", 401);
+            throw new AppError("Combinação incorreta de e-mail/senha.", 401);
         }
 
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -39,8 +39,20 @@ class CreateSessionsService {
             expiresIn: process.env.TOKEN_EXPIREIN!,
         });
 
+        const userReturn = {
+            id: user?.id,
+            name: user?.name,
+            email: user?.email,
+            phone_number: user?.phone_number,
+            occupation: user?.occupation,
+            avatar: user?.avatar,
+            status: user?.status,
+            created_at: user?.created_at,
+            updated_at: user?.updated_at,
+        };
+
         return {
-            user,
+            userReturn,
             token,
         };
     }
