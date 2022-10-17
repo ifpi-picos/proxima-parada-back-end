@@ -1,22 +1,34 @@
 import { sign } from "jsonwebtoken";
-import { User } from "@prisma/client";
 import { compare } from "bcryptjs";
 import { prismaClient } from "../../../database/prismaClient";
 import AppError from "../../../shared/errors/AppError";
 
-interface IRequest {
+interface ISessionToCreated {
     email: string;
     password: string;
 }
 
-interface IResponse {
-    user: User;
+interface ISessionToReturn {
+    userReturn: {
+        id: string;
+        name: string;
+        email: string;
+        phone_number: string | null;
+        occupation: string;
+        avatar: string | null;
+        status: boolean;
+        created_at: Date;
+        updated_at: Date;
+    };
     token: string;
 }
 
 class CreateSessionsService {
-    public async execute({ email, password }: IRequest) {
-        const user = await prismaClient.user.findFirst({
+    public async execute({
+        email,
+        password,
+    }: ISessionToCreated): Promise<ISessionToReturn> {
+        const user = await prismaClient.user.findUnique({
             where: {
                 email,
             },
@@ -39,22 +51,27 @@ class CreateSessionsService {
             expiresIn: process.env.TOKEN_EXPIREIN!,
         });
 
-        const userReturn = {
-            id: user?.id,
-            name: user?.name,
-            email: user?.email,
-            phone_number: user?.phone_number,
-            occupation: user?.occupation,
-            avatar: user?.avatar,
-            status: user?.status,
-            created_at: user?.created_at,
-            updated_at: user?.updated_at,
-        };
+        const userReturn = await prismaClient.user.findUnique({
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                phone_number: true,
+                occupation: true,
+                avatar: true,
+                status: true,
+                created_at: true,
+                updated_at: true,
+            },
+            where: {
+                email,
+            },
+        });
 
         return {
             userReturn,
             token,
-        };
+        } as ISessionToReturn;
     }
 }
 

@@ -1,21 +1,34 @@
 import { prismaClient } from "../../../database/prismaClient";
 import AppError from "../../../shared/errors/AppError";
 import { hash } from "bcryptjs";
+import { User } from "@prisma/client";
 
-interface IRequest {
+interface IUserToCreate {
     name: string;
     email: string;
     password: string;
     occupation: string;
 }
 
+type UserCreated = Omit<User, "password">;
+
 class CreateUserService {
-    public async execute({ name, email, password, occupation }: IRequest) {
-        const emailExists = !!(await prismaClient.user.findUnique({
+    public async execute({
+        name,
+        email,
+        password,
+        occupation,
+    }: IUserToCreate): Promise<UserCreated> {
+        const userResponse = await prismaClient.user.findUnique({
+            select: {
+                email: true,
+            },
             where: {
                 email: email,
             },
-        }));
+        });
+
+        const emailExists = !!userResponse;
 
         if (emailExists) {
             throw new AppError("Endereço de e-mail já usado.");
@@ -24,27 +37,26 @@ class CreateUserService {
         const hashedPassword = await hash(password, 8);
 
         const user = await prismaClient.user.create({
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                phone_number: true,
+                occupation: true,
+                avatar: true,
+                status: true,
+                created_at: true,
+                updated_at: true,
+            },
             data: {
                 name,
                 email,
                 password: hashedPassword,
                 occupation,
-            } as IRequest,
+            } as IUserToCreate,
         });
 
-        const userReturn = {
-            id: user?.id,
-            name: user?.name,
-            email: user?.email,
-            phone_number: user?.phone_number,
-            occupation: user?.occupation,
-            avatar: user?.avatar,
-            status: user?.status,
-            created_at: user?.created_at,
-            updated_at: user?.updated_at,
-        };
-
-        return userReturn;
+        return user;
     }
 }
 
