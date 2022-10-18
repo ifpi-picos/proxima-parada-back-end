@@ -19,6 +19,15 @@ class CreateUserService {
         password,
         occupation,
     }: IUserToCreate): Promise<UserCreated> {
+        /*********Conferindo se o email inserido pelo usuário está "padronizado"*********/
+        const standardizedEmail = /\S+@\S+\.\S+/;
+
+        if (!standardizedEmail.test(email)) {
+            throw new AppError("Endereço de e-mail inválido.");
+        }
+        /********************************************************************************/
+
+        /***Conferindo se o email inserido pelo usuário já está sendo utilizado por outro usuário***/
         const userResponse = await prismaClient.user.findUnique({
             select: {
                 email: true,
@@ -33,6 +42,7 @@ class CreateUserService {
         if (emailExists) {
             throw new AppError("Endereço de e-mail já usado.");
         }
+        /******************************************************************************************/
 
         const hashedPassword = await hash(password, 8);
 
