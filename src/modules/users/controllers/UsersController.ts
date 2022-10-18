@@ -6,7 +6,8 @@ export default class UsersController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { name, email, password, occupation } = request.body;
+        const { name, email, password, samePasswords, occupation } =
+            request.body;
 
         const createUser = new CreateUserService();
 
@@ -15,6 +16,7 @@ export default class UsersController {
                 name,
                 email,
                 password,
+                samePasswords,
                 occupation,
             })
             .catch(error => {
