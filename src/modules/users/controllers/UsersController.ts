@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import CreateUserService from "../services/CreateUserService";
+import ShowUserService from "../services/ShowUserService";
 import UpdateUserService from "../services/UpdateUserService";
 
 export default class UsersController {
@@ -48,6 +49,19 @@ export default class UsersController {
                 response.statusCode = 400;
                 return error;
             });
+
+        return response.json(user);
+    }
+
+    public async show(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params;
+
+        const showUserService = new ShowUserService();
+
+        const user = await showUserService.execute({ id }).catch(error => {
+            response.statusCode = 400;
+            return error;
+        });
 
         return response.json(user);
     }
