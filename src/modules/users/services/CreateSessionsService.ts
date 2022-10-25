@@ -45,11 +45,15 @@ class CreateSessionsService {
         }
 
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const token = sign({}, process.env.JWT_SECRET!, {
-            subject: user.id,
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            expiresIn: process.env.TOKEN_EXPIREIN!,
-        });
+        const token = sign(
+            { id: user.id, name: user.name },
+            process.env.JWT_SECRET as string,
+            {
+                // subject: user.id,
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                expiresIn: process.env.TOKEN_EXPIREIN,
+            },
+        );
 
         const userReturn = await prismaClient.user.findUnique({
             select: {

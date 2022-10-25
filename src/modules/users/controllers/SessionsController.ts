@@ -19,7 +19,7 @@ export default class SessionsController {
                 response.statusCode = 401;
                 return error;
             });
-
+        response.cookie("token", user.token);
         return response.json(user);
     }
 }

@@ -7,7 +7,7 @@ CREATE TABLE "users" (
     "phone_number" TEXT,
     "occupation" TEXT NOT NULL,
     "avatar" TEXT,
-    "status" BOOLEAN,
+    "status" BOOLEAN DEFAULT false,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 

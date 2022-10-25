@@ -6,6 +6,13 @@ class AppError {
         this.message = message;
         this.statusCode = statusCode;
     }
+
+    toJson() {
+        return {
+            statusCode: this.statusCode,
+            message: this.message,
+        };
+    }
 }
 
 export default AppError;
