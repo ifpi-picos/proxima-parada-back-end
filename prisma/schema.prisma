@@ -34,3 +34,14 @@ model UserToken {
 
     @@map("user_token")
 }
+
+model AdminUser {
+    id         String   @unique @default(uuid())
+    name       String   @unique
+    email      String   @unique
+    password   String
+    created_at DateTime @default(now())
+    updated_at DateTime @default(now())
+
+    @@map("admin_users")
+}
