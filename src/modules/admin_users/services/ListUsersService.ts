@@ -10,8 +10,6 @@ class ListUsersService {
         const users = [];
 
         for (let i = 0; i < usersToLoop.length; i++) {
-            //let firstUsersNoPassword = {};
-
             users.push({
                 id: usersToLoop[i].id,
                 name: usersToLoop[i].name,
