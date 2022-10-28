@@ -53,7 +53,10 @@ export default class UsersController {
         return response.json(user);
     }
 
-    public async show(request: Request, response: Response): Promise<Response> {
+    public async show(
+        request: Request,
+        response: Response,
+    ): Promise<Response | unknown> {
         const { id } = request.params;
 
         const showUserService = new ShowUserService();
