@@ -22,6 +22,7 @@ export default class SessionsController {
         response.cookie("token", user.token, {
             maxAge: new Date(Date.now() + 999999999).getTime(),
             httpOnly: true,
+            sameSite: "none",
         });
         return response.json(user);
     }
