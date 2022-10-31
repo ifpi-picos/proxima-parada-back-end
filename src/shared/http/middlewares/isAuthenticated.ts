@@ -14,7 +14,6 @@ export default function isAuthenticated(
     next: NextFunction,
 ): void {
     const tokenInCookie = request.headers.cookie;
-
     if (!tokenInCookie) {
         throw new AppError("O token está ausente.");
     }

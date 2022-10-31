@@ -36,6 +36,7 @@ class UpdateUserService {
             select: {
                 id: true,
                 name: true,
+                email: true,
                 phone_number: true,
                 occupation: true,
                 avatar: true,

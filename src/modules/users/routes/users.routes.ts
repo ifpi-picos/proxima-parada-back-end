@@ -8,13 +8,8 @@ const usersController = new UsersController();
 
 usersRouter.post("/", usersController.create);
 
-usersRouter.put(
-    "/:id",
-    isAuthenticated,
-    checkIdInToken,
-    usersController.update,
-);
+usersRouter.put("/", isAuthenticated, usersController.update);
 
-usersRouter.get("/:id", isAuthenticated, checkIdInToken, usersController.show);
+usersRouter.get("/", isAuthenticated, usersController.show);
 
 export default usersRouter;

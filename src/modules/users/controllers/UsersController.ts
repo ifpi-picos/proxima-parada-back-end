@@ -34,7 +34,7 @@ export default class UsersController {
         response: Response,
     ): Promise<Response> {
         const { name, phone_number, occupation } = request.body;
-        const { id } = request.params;
+        const id = request.user.id;
 
         const updateUserService = new UpdateUserService();
 
@@ -57,7 +57,7 @@ export default class UsersController {
         request: Request,
         response: Response,
     ): Promise<Response | unknown> {
-        const { id } = request.params;
+        const id = request.user.id;
 
         const showUserService = new ShowUserService();
 

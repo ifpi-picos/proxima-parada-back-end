@@ -9,7 +9,13 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+    origin: process.env.BASE_URL_CLIENT,
+    credentials: true, //access-control-allow-credentials:true
+    optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
 app.use("/api", routes);
 
 app.use(cookieParser());
