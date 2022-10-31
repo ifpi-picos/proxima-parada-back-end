@@ -19,7 +19,10 @@ export default class SessionsController {
                 response.statusCode = 401;
                 return error;
             });
-        response.cookie("token", user.token, { maxAge: new Date(Date.now() + 999999999), httpOnly: true });
+        response.cookie("token", user.token, {
+            maxAge: new Date(Date.now() + 999999999).getTime(),
+            httpOnly: true,
+        });
         return response.json(user);
     }
 }
