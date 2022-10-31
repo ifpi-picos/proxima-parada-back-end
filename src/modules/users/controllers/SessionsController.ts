@@ -23,6 +23,7 @@ export default class SessionsController {
             maxAge: new Date(Date.now() + 999999999).getTime(),
             httpOnly: true,
             sameSite: "none",
+            secure: true,
         });
         return response.json(user);
     }
