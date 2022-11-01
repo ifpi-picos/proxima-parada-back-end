@@ -22,13 +22,13 @@ Documentação simples para facilitar o desenvolvimento do fornt end.
 
 | Method   | URL                          | Descrição                                | Entrada | Saida |
 | -------- | ---------------------------- | ---------------------------------------- | ------- | ----- |
-| `POST`   | `/api/users`                 | Cadastra novo usuário.                   | {
+| `POST`   | `/api/users`                 | Cadastra novo usuário.                   | ```json{
 	"name":"Teste Teste",
 	"email":"teste@teste.com",
 	"password":"123456",
 	"samePasswords": "123456",
 	"occupation":"Aluno"
-} | {
+}``` | ```json{
 	"id": "67ab6914-fdd5-49f3-aa60-d32886ce0d1a",
 	"name": "Teste Teste",
 	"email": "teste@teste.com",
@@ -38,12 +38,12 @@ Documentação simples para facilitar o desenvolvimento do fornt end.
 	"status": false,
 	"created_at": "2022-11-01T13:50:16.306Z",
 	"updated_at": "2022-11-01T13:50:16.306Z"
-} |
-| `PUT`    | `/api/users`                 | Atualiza informações de usuário.         | {
+}``` |
+| `PUT`    | `/api/users`                 | Atualiza informações de usuário.         | ```json{
 	"name":"Teste 2 Teste",
 	"phone_number":"(00) 0 0000-0000",
 	"occupation":"Aluno"
-} | {
+}``` | ```json{
 	"id": "67ab6914-fdd5-49f3-aa60-d32886ce0d1a",
 	"name": "Teste 2 Teste",
 	"email": "teste@teste.com",
@@ -53,8 +53,8 @@ Documentação simples para facilitar o desenvolvimento do fornt end.
 	"status": false,
 	"created_at": "2022-11-01T13:50:16.306Z",
 	"updated_at": "2022-11-01T13:50:16.306Z"
-} |
-| `GET`    | `/api/users`                 | Recupera informações de usuário.         |  NONE   | {
+}``` |
+| `GET`    | `/api/users`                 | Recupera informações de usuário.         |  NONE   | ```json{
 	"id": "67ab6914-fdd5-49f3-aa60-d32886ce0d1a",
 	"name": "Teste Teste",
 	"email": "teste@teste.com",
@@ -64,8 +64,8 @@ Documentação simples para facilitar o desenvolvimento do fornt end.
 	"status": false,
 	"created_at": "2022-11-01T13:50:16.306Z",
 	"updated_at": "2022-11-01T13:50:16.306Z"
-} |
-| `GET`    | `/api/adminUsers`            | Recupera todos os usuários cadastrados.  |  NONE   | [
+}``` |
+| `GET`    | `/api/adminUsers`            | Recupera todos os usuários cadastrados.  |  NONE   | ```json[
 	{
 		"id": "e8458b0b-2b9a-43fd-ae8f-a43f5c5ec610",
 		"name": "Rafhael Gaspar",
@@ -99,11 +99,11 @@ Documentação simples para facilitar o desenvolvimento do fornt end.
 		"created_at": "2022-11-01T13:50:16.306Z",
 		"updated_at": "2022-11-01T13:50:16.306Z"
 	}
-] |
-| `POST`   | `/api/sessions`              | Inicia uma nova seção (login).           | {
+]``` |
+| `POST`   | `/api/sessions`              | Inicia uma nova seção (login).           | ```json{
 	"email":"teste@teste.com",
 	"password":"123456"
-} | {
+}``` | ```json{
 	"userReturn": {
 		"id": "67ab6914-fdd5-49f3-aa60-d32886ce0d1a",
 		"name": "Teste Teste",
@@ -116,11 +116,11 @@ Documentação simples para facilitar o desenvolvimento do fornt end.
 		"updated_at": "2022-11-01T13:50:16.306Z"
 	},
 	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2FiNjkxNC1mZGQ1LTQ5ZjMtYWE2MC1kMzI4ODZjZTBkMWEiLCJpYXQiOjE2NjczMTA2MzgsImV4cCI6MTY2NzM5NzAzOH0.mppKenR4-v5mo02R0IU-vry7gjcZQ2mll0TRLrb_c6E"
-} |
-| `POST`   | `/api/adminUsers`            | Cadastra um novo admin no sistema.       | {
+}``` |
+| `POST`   | `/api/adminUsers`            | Cadastra um novo admin no sistema.       | ```json{
 	"name":"Teste Admin",
 	"email":"teste@teste.com",
 	"password":"123456",
 	"samePasswords": "123456"
-} |       |
+}``` |       |
 
