@@ -20,7 +20,7 @@ class CreateAdminUserService {
         samePasswords,
     }: IAdminUserToCreate): Promise<AdminUserCreated> {
         /*********Conferindo se o email inserido pelo usuário está "padronizado"*********/
-        const standardizedEmail = /admin_\S+@\S+\.\S+/;
+        const standardizedEmail = /\S+@\S+\.\S+/;
 
         if (!standardizedEmail.test(email)) {
             throw new AppError("Endereço de e-mail inválido.");
@@ -61,6 +61,7 @@ class CreateAdminUserService {
                 id: true,
                 name: true,
                 email: true,
+                level: true,
                 created_at: true,
                 updated_at: true,
             },

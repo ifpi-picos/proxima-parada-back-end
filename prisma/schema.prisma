@@ -19,6 +19,7 @@ model User {
     occupation   String
     avatar       String?   @unique
     status       Boolean?  @default(false)
+    level        Boolean?  @default(false)
     created_at   DateTime  @default(now())
     updated_at   DateTime  @default(now())
     Vehicle      Vehicle[]
@@ -41,6 +42,7 @@ model AdminUser {
     name       String   @unique
     email      String   @unique
     password   String
+    level      Boolean? @default(true)
     created_at DateTime @default(now())
     updated_at DateTime @default(now())
 

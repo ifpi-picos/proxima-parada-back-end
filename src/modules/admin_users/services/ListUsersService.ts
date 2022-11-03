@@ -18,6 +18,7 @@ class ListUsersService {
                 occupation: usersToLoop[i].occupation,
                 avatar: usersToLoop[i].avatar,
                 status: usersToLoop[i].status,
+                level: usersToLoop[i].level,
                 created_at: usersToLoop[i].created_at,
                 updated_at: usersToLoop[i].updated_at,
             });

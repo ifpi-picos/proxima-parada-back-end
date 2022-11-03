@@ -8,6 +8,7 @@ CREATE TABLE "users" (
     "occupation" TEXT NOT NULL,
     "avatar" TEXT,
     "status" BOOLEAN DEFAULT false,
+    "level" BOOLEAN DEFAULT false,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -31,6 +32,7 @@ CREATE TABLE "admin_users" (
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "level" BOOLEAN DEFAULT true,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 

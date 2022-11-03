@@ -19,6 +19,7 @@ class ShowUserService {
                 occupation: true,
                 avatar: true,
                 status: true,
+                level: true,
                 created_at: true,
                 updated_at: true,
             },
