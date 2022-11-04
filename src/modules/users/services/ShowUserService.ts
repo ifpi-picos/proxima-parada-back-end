@@ -6,7 +6,7 @@ interface IUserSearch {
     id: string;
 }
 
-type UserSearchShow = Omit<User, "password">;
+type UserSearchShow = Omit<User, "password" | "created_at" | "updated_at">;
 
 class ShowUserService {
     public async execute({ id }: IUserSearch): Promise<UserSearchShow> {
@@ -20,8 +20,6 @@ class ShowUserService {
                 avatar: true,
                 status: true,
                 level: true,
-                created_at: true,
-                updated_at: true,
             },
             where: {
                 id: id,

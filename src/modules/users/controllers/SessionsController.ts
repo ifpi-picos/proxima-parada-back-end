@@ -25,6 +25,6 @@ export default class SessionsController {
             sameSite: "none",
             secure: true,
         });
-        return response.json(user);
+        return response.json(user.userReturn);
     }
 }

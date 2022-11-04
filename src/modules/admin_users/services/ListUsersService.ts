@@ -1,7 +1,7 @@
 import { User } from "@prisma/client";
 import { prismaClient } from "../../../database/prismaClient";
 
-type ReturnUsers = Omit<User, "password">;
+type ReturnUsers = Omit<User, "password" | "created_at" | "updated_at">;
 
 class ListUsersService {
     public async execute(): Promise<ReturnUsers[]> {
@@ -19,8 +19,6 @@ class ListUsersService {
                 avatar: usersToLoop[i].avatar,
                 status: usersToLoop[i].status,
                 level: usersToLoop[i].level,
-                created_at: usersToLoop[i].created_at,
-                updated_at: usersToLoop[i].updated_at,
             });
         }
 

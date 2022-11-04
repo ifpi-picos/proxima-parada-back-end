@@ -11,7 +11,7 @@ interface IUserToCreate {
     occupation: string;
 }
 
-type UserCreated = Omit<User, "password">;
+type UserCreated = Omit<User, "password" | "created_at" | "updated_at">;
 
 class CreateUserService {
     public async execute({
@@ -68,8 +68,6 @@ class CreateUserService {
                 avatar: true,
                 status: true,
                 level: true,
-                created_at: true,
-                updated_at: true,
             },
             data: {
                 name,

@@ -60,8 +60,6 @@ class CreateSessionsService {
                 occupation: true,
                 avatar: true,
                 status: true,
-                created_at: true,
-                updated_at: true,
             },
             where: {
                 email,
