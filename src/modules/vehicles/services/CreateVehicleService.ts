@@ -29,7 +29,7 @@ class CreateVehicleService {
         const vehicleInUserToIF = !!vehicleInUser;
 
         if (vehicleInUserToIF) {
-            throw new AppError("O usuário já possui um veículo.");
+            throw new AppError("O usuário já possui um veiculo.");
         }
 
         const vehicle = await prismaClient.vehicle.create({

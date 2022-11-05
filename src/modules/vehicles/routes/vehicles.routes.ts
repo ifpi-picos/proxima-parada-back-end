@@ -7,5 +7,11 @@ const vehiclesRouter = Router();
 const vehiclesController = new VehiclesController();
 
 vehiclesRouter.post("/", isAuthenticated, vehiclesController.create);
+vehiclesRouter.get(
+    "/:id",
+    isAuthenticated,
+    checkIdInToken,
+    vehiclesController.show,
+);
 
 export default vehiclesRouter;

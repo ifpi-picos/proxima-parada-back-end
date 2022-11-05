@@ -51,11 +51,12 @@ model AdminUser {
 }
 
 model Vehicle {
-    id      String @id @unique @default(uuid())
+    id      String  @id @unique @default(uuid())
     brand   String
     model   String
-    id_user String @unique
-    user    User   @relation(fields: [id_user], references: [id])
+    avatar  String? @unique
+    id_user String  @unique
+    user    User    @relation(fields: [id_user], references: [id])
 
     @@map("vehicles")
 }
