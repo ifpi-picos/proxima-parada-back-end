@@ -11,18 +11,19 @@ datasource db {
 }
 
 model User {
-    id           String    @id @unique @default(uuid())
-    name         String
-    email        String    @unique
-    password     String
-    phone_number String?   @unique
-    occupation   String
-    avatar       String?   @unique
-    status       Boolean?  @default(false)
-    level        Boolean?  @default(false)
-    created_at   DateTime  @default(now())
-    updated_at   DateTime  @default(now())
-    Vehicle      Vehicle[]
+    id            String          @id @unique @default(uuid())
+    name          String
+    email         String          @unique
+    password      String
+    phone_number  String?         @unique
+    occupation    String
+    avatar        String?         @unique
+    status        Boolean?        @default(false)
+    level         Boolean?        @default(false)
+    created_at    DateTime        @default(now())
+    updated_at    DateTime        @default(now())
+    Vehicle       Vehicle[]
+    StatusRequest StatusRequest[]
 
     @@map("users")
 }
@@ -57,4 +58,17 @@ model Vehicle {
     user    User   @relation(fields: [id_user], references: [id])
 
     @@map("vehicles")
+}
+
+model StatusRequest {
+    id          String   @id @unique @default(uuid())
+    description String
+    status      Boolean? @default(false)
+    readed      Boolean? @default(false)
+    id_user     String   @unique
+    user        User     @relation(fields: [id_user], references: [id])
+    created_at  DateTime @default(now())
+    updated_at  DateTime @default(now())
+
+    @@map("status_request")
 }

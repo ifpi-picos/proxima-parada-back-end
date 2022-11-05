@@ -35,7 +35,8 @@ class CreateSessionsService {
         });
 
         if (!user) {
-            throw new AppError("Combinação incorreta de e-mail/senha.", 401);
+            //throw new AppError("Combinação incorreta de e-mail/senha.", 401);
+            throw new AppError("Email incorreto.", 401);
         }
 
         const passwordConfirmed = await compare(password, user.password);
