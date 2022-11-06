@@ -13,5 +13,11 @@ vehiclesRouter.get(
     checkIdInToken,
     vehiclesController.show,
 );
+vehiclesRouter.put(
+    "/:id",
+    isAuthenticated,
+    checkIdInToken,
+    vehiclesController.update,
+);
 
 export default vehiclesRouter;
