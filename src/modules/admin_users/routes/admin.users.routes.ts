@@ -5,6 +5,7 @@ const adminUsersRouter = Router();
 const adminUsersController = new AdminUsersController();
 
 adminUsersRouter.post("/", adminUsersController.create);
-adminUsersRouter.get("/", adminUsersController.index);
+adminUsersRouter.get("/users", adminUsersController.indexUsers);
+adminUsersRouter.get("/vehicles", adminUsersController.indexVehicles);
 
 export default adminUsersRouter;

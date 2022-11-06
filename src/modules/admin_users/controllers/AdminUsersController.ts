@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import CreateAdminUserService from "../services/CreateAdminUserService";
 import ListUsersService from "../services/ListUsersService";
+import ListVehiclesService from "../services/ListVehiclesService";
 
 export default class AdminUsersController {
     public async create(
@@ -26,7 +27,7 @@ export default class AdminUsersController {
         return response.json(adminUser);
     }
 
-    public async index(
+    public async indexUsers(
         request: Request,
         response: Response,
     ): Promise<Response> {
@@ -34,5 +35,15 @@ export default class AdminUsersController {
         const users = await listUsers.execute();
 
         return response.json(users);
+    }
+
+    public async indexVehicles(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
+        const listVehicles = new ListVehiclesService();
+        const vehicles = await listVehicles.execute();
+
+        return response.json(vehicles);
     }
 }
