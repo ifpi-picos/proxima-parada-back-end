@@ -34,7 +34,17 @@ class UpdateUserAvatarService {
             throw new AppError("Usuário não encontrado.");
         }
 
-        await prismaClient.user.update({
+        const userToReturn = await prismaClient.user.update({
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                phone_number: true,
+                occupation: true,
+                avatar: true,
+                status: true,
+                level: true,
+            },
             where: {
                 id: id_user,
             },
@@ -43,7 +53,7 @@ class UpdateUserAvatarService {
             },
         });
 
-        return user;
+        return userToReturn;
     }
 }
 
