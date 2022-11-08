@@ -24,6 +24,7 @@ model User {
     updated_at    DateTime        @default(now())
     Vehicle       Vehicle[]
     StatusRequest StatusRequest[]
+    Publication   Publication?
 
     @@map("users")
 }
@@ -71,4 +72,35 @@ model StatusRequest {
     updated_at DateTime @default(now())
 
     @@map("status_request")
+}
+
+model Address {
+    id                 String       @id @unique @default(uuid())
+    city               String
+    district           String
+    road               String
+    number             String
+    longitude          String
+    latitude           String
+    OriginAddress      Publication? @relation("OriginAddress")
+    DestinationAddress Publication? @relation("DestinationAddress")
+
+    @@map("address")
+}
+
+model Publication {
+    id                  String   @id @unique @default(uuid())
+    id_user             String   @unique
+    User                User     @relation(fields: [id_user], references: [id])
+    departure_date      DateTime
+    origin_address      String   @unique
+    OriginAddress       Address  @relation(fields: [origin_address], references: [id], name: "OriginAddress")
+    destination_address String   @unique
+    DestinationAddress  Address  @relation(fields: [destination_address], references: [id], name: "DestinationAddress")
+    statusPublication   Boolean  @default(true)
+    regular             Boolean
+    vacancies           String
+    modality            String
+
+    @@map("publication")
 }
