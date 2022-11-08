@@ -29,9 +29,10 @@ app.get("/api", (request, response) => {
 
 app.use(
     (error: any, request: Request, response: Response, next: NextFunction) => {
-        return response.status((error as AppError).statusCode).send({
+        console.log(error);
+        return response.status((error as AppError).statusCode ?? 500).send({
             message: (error as AppError).message,
-            statusCode: (error as AppError).statusCode,
+            statusCode: (error as AppError).statusCode ?? 500,
         });
     },
 );

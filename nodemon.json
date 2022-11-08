@@ -1,1 +1,1 @@
-{ "execMap" : { "ts" : "tsc && node dist/shared/http/server.js" } }
+{ "exec": "tsc && node ./dist/shared/http/server.js", "watch": "./src/*", "ext": "ts" }

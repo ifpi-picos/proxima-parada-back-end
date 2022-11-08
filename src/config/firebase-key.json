@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "proxima-parada-storage",
+  "private_key_id": "58cc26dcddfd0cefd97ac2eea1e33f993b410402",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCjT/dw0SuFWJTg\nILmCP9baIs/iC/3no13IRLZ2iWA9I8flJUgCavhlTqu3H1ryGPtv2L853WJnoqQE\n2gWnbNV3V4wix9CJxLdrLGdUV/c8Sk1K6KE205ZxA3rE17rlCwc0SKWYvPky4fSq\nFZoI9mmdnxPiVSDUxqwcEUk0/kmyacRjSQ25IgnlXept7lgUW7d439mDC39JFfsC\nZm0JnO+n/nN+sLy04ESZqg7ddD/QBfGMUKzEs8CfZXdaZa92d+Q8Pnvsrx/avT1n\n6IglH6CQ/IH2tXZUHIZCvQWfAW1wYLWswOjlmujV83m/Mujf65mrnZoIcxwi9gsH\nKPj1gl3jAgMBAAECggEACECAqMcw80Z0E1Uj+oReR1xt86aWeE9lbDqom5m6bqxx\nq87z8gdUsM3GWHTxo/0GK3Mgynw4vjLWJdacZYbWzHZ0gsdk7qkteXFfcUAWoonA\nmRHjH4GWfvRlji+2Zl9lyEsJbwvRbbREKBn6VAybbpb8qrmRdJ7rUGnBMLfOooCn\n+STLW8BxM99xvJbAZAxAeiRTrGUSQh1q36OGwML5LjggCtHYG+wkxTuREboN3ZjD\nVe314pvJsQDtS1AunaBC2krdbEofaOQKS7lj+l8deYrX1iB5BJMrmQ4gP3otlKFo\njmmBCeEV3iv8HfWtKjFNEbQ2plZlpXxVWlD3sqv0GQKBgQDUzfbj80wBziD23iFh\nUbyU7U6LXaRxM1DeLDeEttDXjfVMRmIWisBvRIPbX7zcDLBNrdLJgzrR3OhcNlpJ\n1a5YUsed3RGdflOva69MjCzH9E/tjV9/5GGtEOnMCjmkiRSRbr2FOPf4JdZYRxrL\nvgswc5CDFTxEODxJ7pPWQ97ZSwKBgQDEdjkdodOjfahcMXzgR5PYpgWC0DEpILvg\nG7B7OM4IAdCzCGLU4ClJ18VaAW/V5OoI7qofDABtcTsGU6rFABOvWlCViSMoEO0x\nY/RMbhM18n+O4uovt36JPg+T59oQMdw55uJiIyM2AwlHghUqoeYIvX+rQiPxechW\nychZkhYGyQKBgBdhCV7Bu/f2zWhRvxkSAcXazGZDQ22sVZYTBYZvD0KfNfPLR7ty\nQvH2dQYE3prOShA+qIm7ARtNSbnXvtOdximt7oBJaUYEOu1qxzeBrunIzX8rqPJE\nBPcehJEGDo8lAD16DRg1yghZH9NS/H6lwlTwXVAJZTWZeAYnT9aaXkFBAoGAc63d\nEaqg0GqEAM0O54yd7HpNUmo+GCZzGZGUR+n5vtM6zMBKWWgoR5eqV8Xy0PI6L8pA\nF4nckpSSmbYYHmleLeky++nE7qmQ0H03cu15mFFSdJL+K9ySwELvrzpctx50uw9N\nC1X/PKVrCFT7G6A6r7jM/M00FtKLeTbVJpCTMakCgYEAzSUFd3KBgGOwlq+vvqai\ncVUiG5ZxfE8CCubYx6fU04qabf1g9Wf2gjsoGGN6qtOvRJoD7qqVMkROzpdYYHsi\ntVNqlebFrvr8o8QJJ0/QR+iylEVwxM3O/EovAY0ab2TKF6seG1+tGpIaU0FfE1Yc\nW3GAauRku6h0yWK3ZkbhMfw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-ud9ja@proxima-parada-storage.iam.gserviceaccount.com",
+  "client_id": "107214004307827214481",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ud9ja%40proxima-parada-storage.iam.gserviceaccount.com"
+}
