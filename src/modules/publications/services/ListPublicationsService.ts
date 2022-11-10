@@ -10,29 +10,41 @@ interface IReturnListPublications {
 
 class ListPublicationsService {
     public async execute(): Promise<any[]> {
-        const publicationsToLoop = await prismaClient.publication.findMany();
-
-        const publications = [];
-
-        for (let i = 0; i < publicationsToLoop.length; i++) {
-            const originAddress = await prismaClient.address.findFirst({
-                where: {
-                    id: publicationsToLoop[i].origin_address,
+        const publications = await prismaClient.publication.findMany({
+            select: {
+                id: true,
+                id_user: true,
+                departure_date: true,
+                origin_address: true,
+                destination_address: true,
+                statusPublication: true,
+                regular: true,
+                vacancies: true,
+                modality: true,
+                OriginAddress: {
+                    select: {
+                        id: true,
+                        city: true,
+                        district: true,
+                        road: true,
+                        number: true,
+                        longitude: true,
+                        latitude: true,
+                    },
                 },
-            });
-
-            const destinationAddress = await prismaClient.address.findFirst({
-                where: {
-                    id: publicationsToLoop[i].destination_address,
+                DestinationAddress: {
+                    select: {
+                        id: true,
+                        city: true,
+                        district: true,
+                        road: true,
+                        number: true,
+                        longitude: true,
+                        latitude: true,
+                    },
                 },
-            });
-
-            const aux = [];
-
-            aux.push(publicationsToLoop[i], originAddress, destinationAddress);
-
-            publications.push(aux);
-        }
+            },
+        });
 
         return publications;
     }
