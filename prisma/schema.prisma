@@ -24,7 +24,7 @@ model User {
     updated_at    DateTime        @default(now())
     Vehicle       Vehicle[]
     StatusRequest StatusRequest[]
-    Publication   Publication?
+    Publication   Publication[]
 
     @@map("users")
 }
@@ -90,9 +90,9 @@ model Address {
 
 model Publication {
     id                  String   @id @unique @default(uuid())
-    id_user             String   @unique
+    id_user             String
     User                User     @relation(fields: [id_user], references: [id])
-    departure_date      DateTime
+    departure_date      DateTime @default(now())
     origin_address      String   @unique
     OriginAddress       Address  @relation(fields: [origin_address], references: [id], name: "OriginAddress")
     destination_address String   @unique
