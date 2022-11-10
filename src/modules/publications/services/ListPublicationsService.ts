@@ -1,15 +1,8 @@
 import { Publication } from ".prisma/client";
-import { Address } from "@prisma/client";
 import { prismaClient } from "../../../database/prismaClient";
 
-interface IReturnListPublications {
-    publications: Publication;
-    originAddress: Address;
-    destinationAddress: Address;
-}
-
 class ListPublicationsService {
-    public async execute(): Promise<any[]> {
+    public async execute(): Promise<Publication[]> {
         const publications = await prismaClient.publication.findMany({
             select: {
                 id: true,
