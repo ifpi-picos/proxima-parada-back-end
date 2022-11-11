@@ -17,8 +17,7 @@ interface ISessionToReturn {
         occupation: string;
         avatar: string | null;
         status: boolean;
-        created_at: Date;
-        updated_at: Date;
+        level: boolean;
     };
     token: string;
 }
@@ -61,6 +60,15 @@ class CreateSessionsService {
                 occupation: true,
                 avatar: true,
                 status: true,
+                level: true,
+                Vehicle: {
+                    select: {
+                        id: true,
+                        brand: true,
+                        model: true,
+                        avatar: true,
+                    },
+                },
             },
             where: {
                 email,
