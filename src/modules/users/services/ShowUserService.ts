@@ -20,6 +20,14 @@ class ShowUserService {
                 avatar: true,
                 status: true,
                 level: true,
+                Vehicle: {
+                    select: {
+                        id: true,
+                        brand: true,
+                        model: true,
+                        avatar: true,
+                    },
+                },
             },
             where: {
                 id: id,
