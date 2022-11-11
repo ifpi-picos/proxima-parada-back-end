@@ -5,22 +5,26 @@ type ReturnUsers = Omit<User, "password" | "created_at" | "updated_at">;
 
 class ListUsersService {
     public async execute(): Promise<ReturnUsers[]> {
-        const usersToLoop = await prismaClient.user.findMany();
-
-        const users = [];
-
-        for (let i = 0; i < usersToLoop.length; i++) {
-            users.push({
-                id: usersToLoop[i].id,
-                name: usersToLoop[i].name,
-                email: usersToLoop[i].email,
-                phone_number: usersToLoop[i].phone_number,
-                occupation: usersToLoop[i].occupation,
-                avatar: usersToLoop[i].avatar,
-                status: usersToLoop[i].status,
-                level: usersToLoop[i].level,
-            });
-        }
+        const users = await prismaClient.user.findMany({
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                phone_number: true,
+                occupation: true,
+                avatar: true,
+                status: true,
+                level: true,
+                Vehicle: {
+                    select: {
+                        id: true,
+                        brand: true,
+                        model: true,
+                        avatar: true,
+                    },
+                },
+            },
+        });
 
         return users;
     }
