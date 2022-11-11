@@ -41,8 +41,15 @@ class UpdateUserService {
                 occupation: true,
                 avatar: true,
                 status: true,
-                created_at: true,
-                updated_at: true,
+                level: true,
+                Vehicle: {
+                    select: {
+                        id: true,
+                        brand: true,
+                        model: true,
+                        avatar: true,
+                    },
+                },
             },
             where: {
                 id: id,
