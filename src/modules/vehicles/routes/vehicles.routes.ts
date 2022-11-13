@@ -9,7 +9,7 @@ const vehiclesRouter = Router();
 const vehiclesController = new VehiclesController();
 const vehicleAvatarController = new VehicleAvatarController();
 
-const uploadUserAvatar = multer({
+const uploadVehicleAvatar = multer({
     storage: multer.memoryStorage(),
 });
 
@@ -30,7 +30,7 @@ vehiclesRouter.put(
 vehiclesRouter.patch(
     "/avatar/:id",
     isAuthenticated,
-    uploadUserAvatar.single("avatarFilename"),
+    uploadVehicleAvatar.single("avatarFilename"),
     vehicleAvatarController.update,
 );
 
