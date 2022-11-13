@@ -31,4 +31,10 @@ usersRouter.patch(
     userAvatarController.update,
 );
 
+usersRouter.get(
+    "/publications/:id",
+    isAuthenticated,
+    usersController.indexPublications,
+);
+
 export default usersRouter;

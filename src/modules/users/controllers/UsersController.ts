@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import CreateUserService from "../services/CreateUserService";
+import ListPublicationsService from "../services/ListPublicationsService";
 import ShowUserService from "../services/ShowUserService";
 import UpdateUserService from "../services/UpdateUserService";
 
@@ -64,5 +65,23 @@ export default class UsersController {
         });
 
         return response.json(user);
+    }
+
+    public async indexPublications(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
+        const { id } = request.params;
+
+        const listPublications = new ListPublicationsService();
+
+        const publications = await listPublications
+            .execute({ id })
+            .catch(error => {
+                response.statusCode = 400;
+                return error;
+            });
+
+        return response.json(publications);
     }
 }
