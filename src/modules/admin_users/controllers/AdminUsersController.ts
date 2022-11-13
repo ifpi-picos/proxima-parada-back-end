@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import CreateAdminUserService from "../services/CreateAdminUserService";
 import DeleteProductService from "../services/DeleteVehicleService";
 import ListAdminsService from "../services/ListAdminsService";
+import ListStatusRequestService from "../services/ListStatusRequestService";
 import ListUsersService from "../services/ListUsersService";
 import ListVehiclesService from "../services/ListVehiclesService";
 
@@ -54,6 +55,20 @@ export default class AdminUsersController {
         });
 
         return response.json(admins);
+    }
+
+    public async indexStatusRequest(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
+        const listStatusRequest = new ListStatusRequestService();
+
+        const statusRequest = await listStatusRequest.execute().catch(error => {
+            response.statusCode = 400;
+            return error;
+        });
+
+        return response.json(statusRequest);
     }
 
     public async indexVehicles(
