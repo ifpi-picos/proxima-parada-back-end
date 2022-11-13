@@ -5,6 +5,7 @@ import ListAdminsService from "../services/ListAdminsService";
 import ListStatusRequestService from "../services/ListStatusRequestService";
 import ListUsersService from "../services/ListUsersService";
 import ListVehiclesService from "../services/ListVehiclesService";
+import UpdateStatusRequestService from "../services/UpdateStatusRequestService";
 
 export default class AdminUsersController {
     public async create(
@@ -98,5 +99,24 @@ export default class AdminUsersController {
         });
 
         return response.json([]);
+    }
+
+    public async updateStatusRequest(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
+        const { id_user, status } = request.body;
+        const { id } = request.params;
+
+        const updateStatusRequest = new UpdateStatusRequestService();
+
+        const statusRequest = await updateStatusRequest
+            .execute({ id, id_user, status })
+            .catch(error => {
+                response.statusCode = 400;
+                return error;
+            });
+
+        return response.json(statusRequest);
     }
 }
