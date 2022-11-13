@@ -1,6 +1,7 @@
 import { Publication } from "@prisma/client";
 import { prismaClient } from "../../../database/prismaClient";
 import AppError from "../../../shared/errors/AppError";
+
 interface IUser {
     id: string;
 }
@@ -36,7 +37,7 @@ class ListPublicationsService {
             },
         });
 
-        if (!publications) {
+        if (!publications[0]) {
             throw new AppError("Este usuário não possui publicação.");
         }
 
