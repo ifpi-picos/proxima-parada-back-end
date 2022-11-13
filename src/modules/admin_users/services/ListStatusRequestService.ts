@@ -1,7 +1,5 @@
-import { AdminUser, StatusRequest } from "@prisma/client";
+import { StatusRequest } from "@prisma/client";
 import { prismaClient } from "../../../database/prismaClient";
-
-type ReturnAdmins = Omit<AdminUser, "password" | "created_at" | "updated_at">;
 
 class ListStatusRequestService {
     public async execute(): Promise<StatusRequest[]> {
