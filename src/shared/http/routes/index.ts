@@ -11,7 +11,7 @@ const routes = Router();
 
 routes.use("/users", usersRouter);
 routes.use("/user/session", sessionsRouter);
-routes.use("/adminUsers", adminUsersRouter);
+routes.use("/admin", adminUsersRouter);
 routes.use("/admin/session", sessionsAdminRouter);
 routes.use("/vehicles", vehiclesRouter);
 routes.use("/publications", publicationRouter);

@@ -10,6 +10,10 @@ adminUsersRouter.get("/admins", adminUsersController.indexAdmins);
 adminUsersRouter.get("/vehicles", adminUsersController.indexVehicles);
 adminUsersRouter.get("/statusRequest", adminUsersController.indexStatusRequest);
 adminUsersRouter.delete("/vehicle/:id", adminUsersController.deleteVehicle);
+adminUsersRouter.delete(
+    "/statusRequest/:id",
+    adminUsersController.deleteStatusRequest,
+);
 adminUsersRouter.put(
     "/statusRequest/:id",
     adminUsersController.updateStatusRequest,

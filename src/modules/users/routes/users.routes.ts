@@ -27,7 +27,7 @@ usersRouter.get("/:id", isAuthenticated, checkIdInToken, usersController.show);
 usersRouter.patch(
     "/avatar",
     isAuthenticated,
-    uploadUserAvatar.single("avatarFilename"),
+    uploadUserAvatar.single("userAvatarFileName"),
     userAvatarController.update,
 );
 

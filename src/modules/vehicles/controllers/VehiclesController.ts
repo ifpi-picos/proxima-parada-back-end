@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { prismaClient } from "../../../database/prismaClient";
 import CreateVehicleService from "../services/CreateVehicleService";
 import ShowVehicleService from "../services/ShowVehicleService";
 import UpdateVehicleService from "../services/UpdateVehicleService";
@@ -62,5 +63,23 @@ export default class VehiclesController {
             });
 
         return response.json(vehicle);
+    }
+
+    public async delete(request: Request, response: Response) {
+        const { id } = request.params;
+
+        const vehicle = await prismaClient.vehicle.delete({
+            where: {
+                id,
+            },
+        });
+
+        response.json(vehicle);
+    }
+
+    public async allVehicles(request: Request, response: Response) {
+        const vehicles = await prismaClient.vehicle.findMany();
+
+        response.json(vehicles);
     }
 }

@@ -69,6 +69,14 @@ class CreateSessionsService {
                         avatar: true,
                     },
                 },
+                StatusRequest: {
+                    select: {
+                        id: true,
+                        status: true,
+                        readed: true,
+                        id_user: true,
+                    },
+                },
             },
             where: {
                 email,

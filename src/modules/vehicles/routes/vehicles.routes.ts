@@ -27,10 +27,13 @@ vehiclesRouter.put(
     vehiclesController.update,
 );
 
+vehiclesRouter.post("/:id", isAuthenticated, vehiclesController.delete);
+vehiclesRouter.get("/", vehiclesController.allVehicles);
+
 vehiclesRouter.patch(
     "/avatar/:id",
     isAuthenticated,
-    uploadVehicleAvatar.single("avatarFilename"),
+    uploadVehicleAvatar.single("vehicleAvatarFileName"),
     vehicleAvatarController.update,
 );
 
