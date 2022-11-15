@@ -6,6 +6,12 @@ import AppError from "../../../shared/errors/AppError";
 
 const BUCKET = "proxima-parada-storage.appspot.com";
 
+serviceAccount.private_key = process.env.FIREBASE_PRIVATE_KEY!.replace(
+    /\\n/g,
+    "\n",
+);
+serviceAccount.private_key_id = process.env.FIREBASE_PRIVATE_KEI_ID!;
+
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount as ServiceAccount),
     storageBucket: BUCKET,
