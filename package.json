@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "start": "npx nodemon --config ./nodemon.json",
-        "build": "yarn migrate && tsc",
+        "build": "yarn install --ignore-engines && yarn deploy",
+        "deploy": "yarn migrate && tsc",
         "migrate": "npx prisma migrate dev --name init",
         "test": "eslint . --ext .ts",
         "lint": "eslint . --ext .ts",
