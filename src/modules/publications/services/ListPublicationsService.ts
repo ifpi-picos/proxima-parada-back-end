@@ -14,6 +14,13 @@ class ListPublicationsService {
                 regular: true,
                 vacancies: true,
                 modality: true,
+                User: {
+                    select: {
+                        name: true,
+                        avatar: true,
+                        occupation: true,
+                    },
+                },
                 OriginAddress: {
                     select: {
                         id: true,

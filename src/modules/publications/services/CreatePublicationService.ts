@@ -16,6 +16,7 @@ interface IPublicationToCreate {
     destination_longitude: string;
     origin_latitude: string;
     destination_latitude: string;
+    departure_date: Date;
     regular: boolean;
     vacancies: string;
     modality: string;
@@ -42,6 +43,7 @@ class CreatePublicationService {
         destination_longitude,
         origin_latitude,
         destination_latitude,
+        departure_date,
         regular,
         vacancies,
         modality,
@@ -83,6 +85,7 @@ class CreatePublicationService {
                 id_user: id_user,
                 origin_address: originAddress.id,
                 destination_address: destinationAddress.id,
+                departure_date: departure_date,
                 regular: regular,
                 vacancies: vacancies,
                 modality: modality,
