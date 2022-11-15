@@ -120,15 +120,4 @@ export default class AdminUsersController {
 
         return response.json(statusRequest);
     }
-
-    public async deleteStatusRequest(request: Request, response: Response) {
-        const { id } = request.params;
-
-        const deleteStatusRequest = await prismaClient.statusRequest.delete({
-            where: {
-                id: id,
-            },
-        });
-        response.json(deleteStatusRequest);
-    }
 }
