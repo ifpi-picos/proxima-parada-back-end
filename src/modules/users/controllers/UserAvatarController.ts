@@ -10,6 +10,7 @@ serviceAccount.private_key = process.env.FIREBASE_PRIVATE_KEY!.replace(
     /\\n/g,
     "\n",
 );
+
 serviceAccount.private_key_id = process.env.FIREBASE_PRIVATE_KEI_ID!;
 
 admin.initializeApp({
