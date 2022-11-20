@@ -6,18 +6,13 @@ interface IPublicationToCreate {
     id_user: string;
     origin_city: string;
     destination_city: string;
-    origin_district: string;
-    destination_district: string;
-    origin_road: string;
-    destination_road: string;
+    origin_neighborhood: string;
+    destination_neighborhood: string;
+    origin_street: string;
+    destination_street: string;
     origin_number: string;
     destination_number: string;
-    origin_longitude: string;
-    destination_longitude: string;
-    origin_latitude: string;
-    destination_latitude: string;
     regular: boolean;
-    vacancies: string;
     modality: string;
 }
 
@@ -32,18 +27,13 @@ class CreatePublicationService {
         id_user,
         origin_city,
         destination_city,
-        origin_district,
-        destination_district,
-        origin_road,
-        destination_road,
+        origin_neighborhood,
+        destination_neighborhood,
+        origin_street,
+        destination_street,
         origin_number,
         destination_number,
-        origin_longitude,
-        destination_longitude,
-        origin_latitude,
-        destination_latitude,
         regular,
-        vacancies,
         modality,
     }: IPublicationToCreate): Promise<IPublicationCreated> {
         const user = await prismaClient.user.findUnique({
@@ -59,22 +49,18 @@ class CreatePublicationService {
         const originAddress = await prismaClient.address.create({
             data: {
                 city: origin_city,
-                district: origin_district,
-                road: origin_road,
+                neighborhood: origin_neighborhood,
+                street: origin_street,
                 number: origin_number,
-                longitude: origin_longitude,
-                latitude: origin_latitude,
             },
         });
 
         const destinationAddress = await prismaClient.address.create({
             data: {
                 city: destination_city,
-                district: destination_district,
-                road: destination_road,
+                neighborhood: destination_neighborhood,
+                street: destination_street,
                 number: destination_number,
-                longitude: destination_longitude,
-                latitude: destination_latitude,
             },
         });
 
@@ -84,7 +70,6 @@ class CreatePublicationService {
                 origin_address: originAddress.id,
                 destination_address: destinationAddress.id,
                 regular: regular,
-                vacancies: vacancies,
                 modality: modality,
             },
         });
