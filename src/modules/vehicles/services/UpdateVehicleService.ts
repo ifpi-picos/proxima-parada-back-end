@@ -5,12 +5,18 @@ interface IVehicleToUpdate {
     id: string;
     brand: string;
     model: string;
+    vehicle_type: string;
+    vehicle_color: string;
+    license_plate: string;
 }
 
 interface IVehicleUpdateToReturn {
     id: string;
     brand: string;
     model: string;
+    vehicle_type: string;
+    vehicle_color: string;
+    license_plate: string;
     id_user: string;
 }
 
@@ -19,6 +25,9 @@ class UpdateVehicleService {
         id,
         brand,
         model,
+        vehicle_type,
+        vehicle_color,
+        license_plate,
     }: IVehicleToUpdate): Promise<IVehicleUpdateToReturn> {
         const vehicleExists = await prismaClient.vehicle.findUnique({
             where: {
@@ -35,6 +44,9 @@ class UpdateVehicleService {
                 id: true,
                 brand: true,
                 model: true,
+                vehicle_type: true,
+                vehicle_color: true,
+                license_plate: true,
                 id_user: true,
             },
             where: {
@@ -43,6 +55,9 @@ class UpdateVehicleService {
             data: {
                 brand,
                 model,
+                vehicle_type,
+                vehicle_color,
+                license_plate,
             },
         });
 
