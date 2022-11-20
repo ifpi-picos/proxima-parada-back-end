@@ -9,7 +9,14 @@ export default class VehiclesController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { brand, model, id_user } = request.body;
+        const {
+            brand,
+            model,
+            vehicle_type,
+            vehicle_color,
+            license_plate,
+            id_user,
+        } = request.body;
 
         const createVehicle = new CreateVehicleService();
 
@@ -17,6 +24,9 @@ export default class VehiclesController {
             .execute({
                 brand,
                 model,
+                vehicle_type,
+                vehicle_color,
+                license_plate,
                 id_user,
             })
             .catch(error => {
