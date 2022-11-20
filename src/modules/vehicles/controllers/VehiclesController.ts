@@ -56,7 +56,8 @@ export default class VehiclesController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { brand, model } = request.body;
+        const { brand, model, vehicle_type, vehicle_color, license_plate } =
+            request.body;
         const { id } = request.params;
 
         const updateVehicleService = new UpdateVehicleService();
@@ -66,6 +67,9 @@ export default class VehiclesController {
                 id,
                 brand,
                 model,
+                vehicle_type,
+                vehicle_color,
+                license_plate,
             })
             .catch(error => {
                 response.statusCode = 400;
