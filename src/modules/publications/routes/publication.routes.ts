@@ -14,4 +14,16 @@ publicationRouter.get(
 );
 publicationRouter.get("/:id", publicationsController.show);
 
+publicationRouter.put(
+    "/update/:id_user",
+    isAuthenticated,
+    publicationsController.update,
+);
+
+publicationRouter.put(
+    "/update/vacancies/:id_user",
+    isAuthenticated,
+    publicationsController.updateVacancies,
+);
+
 export default publicationRouter;
