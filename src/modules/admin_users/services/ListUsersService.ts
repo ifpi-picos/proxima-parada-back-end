@@ -21,6 +21,9 @@ class ListUsersService {
                         brand: true,
                         model: true,
                         avatar: true,
+                        vehicle_type: true,
+                        vehicle_color: true,
+                        license_plate: true,
                     },
                 },
                 StatusRequest: {
