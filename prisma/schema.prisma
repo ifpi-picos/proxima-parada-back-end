@@ -52,12 +52,15 @@ model AdminUser {
 }
 
 model Vehicle {
-    id      String  @id @unique @default(uuid())
-    brand   String
-    model   String
-    avatar  String? @unique
-    id_user String  @unique
-    user    User    @relation(fields: [id_user], references: [id])
+    id            String  @id @unique @default(uuid())
+    brand         String
+    model         String
+    avatar        String? @unique
+    vehicle_type  String
+    vehicle_color String
+    license_plate String
+    id_user       String  @unique
+    user          User    @relation(fields: [id_user], references: [id])
 
     @@map("vehicles")
 }
@@ -77,11 +80,9 @@ model StatusRequest {
 model Address {
     id                 String       @id @unique @default(uuid())
     city               String
-    district           String
-    road               String
+    neighborhood       String
+    street             String
     number             String
-    longitude          String
-    latitude           String
     OriginAddress      Publication? @relation("OriginAddress")
     DestinationAddress Publication? @relation("DestinationAddress")
 
@@ -99,7 +100,7 @@ model Publication {
     DestinationAddress  Address  @relation(fields: [destination_address], references: [id], name: "DestinationAddress")
     statusPublication   Boolean  @default(true)
     regular             Boolean
-    vacancies           String
+    vacancies           Boolean  @default(true)
     modality            String
 
     @@map("publication")
