@@ -42,7 +42,7 @@ class ListPublicationsService {
                 },
             },
             orderBy: {
-                departure_date: "desc",
+                departure_date: "asc",
             },
             where: {
                 vacancies: true,
