@@ -40,6 +40,9 @@ class ListPublicationsService {
                     },
                 },
             },
+            where: {
+                vacancies: true,
+            },
         });
 
         return publications;
