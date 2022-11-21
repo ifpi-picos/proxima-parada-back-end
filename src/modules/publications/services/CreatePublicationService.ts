@@ -66,12 +66,12 @@ class CreatePublicationService {
             },
         });
 
-        const smashDate = departure_date.split("-");
-        const ano = smashDate[0];
-        const mes = smashDate[1];
-        const dia = smashDate[2];
+        const separate_date = departure_date.split("-");
+        const year = separate_date[0];
+        const month = separate_date[1];
+        const day = separate_date[2];
 
-        const departure_date_converted = new Date(`${ano}-${mes}-${dia}`);
+        const departure_date_converted = new Date(`${year}-${month}-${day}`);
 
         const publication = await prismaClient.publication.create({
             data: {
