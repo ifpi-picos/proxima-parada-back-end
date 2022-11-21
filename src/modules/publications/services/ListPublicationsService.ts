@@ -8,6 +8,7 @@ class ListPublicationsService {
                 id: true,
                 id_user: true,
                 departure_date: true,
+                departure_hour: true,
                 origin_address: true,
                 destination_address: true,
                 statusPublication: true,
