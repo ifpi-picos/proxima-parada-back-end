@@ -12,6 +12,7 @@ export default class PublicationsController {
     ): Promise<Response> {
         const {
             id_user,
+            departure_date,
             origin_city,
             destination_city,
             origin_neighborhood,
@@ -29,6 +30,7 @@ export default class PublicationsController {
         const publication = await createPublication
             .execute({
                 id_user,
+                departure_date,
                 origin_city,
                 destination_city,
                 origin_neighborhood,

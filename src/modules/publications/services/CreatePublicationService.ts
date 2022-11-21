@@ -4,6 +4,7 @@ import AppError from "../../../shared/errors/AppError";
 
 interface IPublicationToCreate {
     id_user: string;
+    departure_date: string;
     origin_city: string;
     destination_city: string;
     origin_neighborhood: string;
@@ -25,6 +26,7 @@ interface IPublicationCreated {
 class CreatePublicationService {
     public async execute({
         id_user,
+        departure_date,
         origin_city,
         destination_city,
         origin_neighborhood,
@@ -64,9 +66,17 @@ class CreatePublicationService {
             },
         });
 
+        const smashDate = departure_date.split("-");
+        const ano = smashDate[0];
+        const mes = smashDate[1];
+        const dia = smashDate[2];
+
+        const departure_date_converted = new Date(`${ano}-${mes}-${dia}`);
+
         const publication = await prismaClient.publication.create({
             data: {
                 id_user: id_user,
+                departure_date: departure_date_converted,
                 origin_address: originAddress.id,
                 destination_address: destinationAddress.id,
                 regular: regular,
