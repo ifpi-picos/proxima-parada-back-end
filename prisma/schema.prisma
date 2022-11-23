@@ -93,8 +93,7 @@ model Publication {
     id                  String   @id @unique @default(uuid())
     id_user             String
     User                User     @relation(fields: [id_user], references: [id])
-    departure_date      DateTime @db.Date
-    departure_hour      DateTime @default(now()) @db.Time
+    departure_date      DateTime @db.Timestamptz
     origin_address      String   @unique
     OriginAddress       Address  @relation(fields: [origin_address], references: [id], name: "OriginAddress")
     destination_address String   @unique

@@ -66,12 +66,15 @@ class CreatePublicationService {
             },
         });
 
-        const separate_date = departure_date.split("-");
-        const year = separate_date[0];
-        const month = separate_date[1];
-        const day = separate_date[2];
+        const separate_date = departure_date.split("T");
+        const hours: string = separate_date[1];
+        const separate_hour = hours.split(":");
+        const hour: number = +separate_hour[0];
+        const min: number = +separate_hour[1];
 
-        const departure_date_converted = new Date(`${year}-${month}-${day}`);
+        const departure_date_converted = new Date(departure_date);
+        departure_date_converted.setUTCHours(hour);
+        departure_date_converted.setUTCMinutes(min);
 
         const publication = await prismaClient.publication.create({
             data: {

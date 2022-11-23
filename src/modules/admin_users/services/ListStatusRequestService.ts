@@ -4,6 +4,12 @@ import { prismaClient } from "../../../database/prismaClient";
 class ListStatusRequestService {
     public async execute(): Promise<StatusRequest[]> {
         const statusRequest = await prismaClient.statusRequest.findMany({
+            orderBy: {
+                created_at: "desc",
+            },
+            where: {
+                readed: false,
+            },
             select: {
                 id: true,
                 status: true,

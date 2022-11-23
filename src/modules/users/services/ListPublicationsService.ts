@@ -19,11 +19,13 @@ class ListPublicationsService {
         }
 
         const publications = await prismaClient.publication.findMany({
+            orderBy: {
+                departure_date: "desc",
+            },
             select: {
                 id: true,
                 id_user: true,
                 departure_date: true,
-                departure_hour: true,
                 origin_address: true,
                 destination_address: true,
                 statusPublication: true,
@@ -38,9 +40,9 @@ class ListPublicationsService {
             },
         });
 
-        if (!publications[0]) {
-            throw new AppError("Este usuário não possui publicação.");
-        }
+        /* if (!publications[0]) {
+            throw new AppError("Este usuário não possui publicação.", 200);
+        } */
 
         return publications;
     }
