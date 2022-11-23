@@ -62,7 +62,6 @@ class ListPublicationsService {
         for (let i = 0; i < publications.length; i++) {
             publicationsReturn.push({
                 User: publications[i].User,
-                date_original: publications[i].departure_date,
                 departure_hour: moment(publications[i].departure_date)
                     .utc()
                     .local()
@@ -70,14 +69,15 @@ class ListPublicationsService {
                 departure_date: moment(publications[i].departure_date).format(
                     "DD/MM/YYYY",
                 ),
-                DestinationAddress: publications[i].DestinationAddress,
-                OriginAddress: publications[i].OriginAddress,
                 id: publications[i].id,
                 id_user: publications[i].id_user,
                 modality: publications[i].modality,
                 regular: publications[i].regular,
                 statusPublication: publications[i].statusPublication,
                 vacancies: publications[i].vacancies,
+                DestinationAddress: publications[i].DestinationAddress,
+                OriginAddress: publications[i].OriginAddress,
+                expand: false,
             });
         }
 
