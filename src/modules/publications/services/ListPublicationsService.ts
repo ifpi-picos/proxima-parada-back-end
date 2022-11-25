@@ -55,6 +55,7 @@ class ListPublicationsService {
             },
             where: {
                 vacancies: true,
+                statusPublication: true,
             },
         });
 

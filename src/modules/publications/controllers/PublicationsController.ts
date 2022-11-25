@@ -4,6 +4,7 @@ import ListPublicationsService from "../services/ListPublicationsService";
 import ShowPublicationService from "../services/ShowPublicationService";
 import UpdatePublicationService from "../services/UpdatePublicationService";
 import UpdateVacanciesPublicationService from "../services/UpdateVacanciesPublicationService";
+import UpdateStatusPublicationService from "../services/UpdateStatusPublicationService";
 
 export default class PublicationsController {
     public async create(
@@ -138,6 +139,30 @@ export default class PublicationsController {
                 id_user,
                 id,
                 vacancies,
+            })
+            .catch(error => {
+                response.statusCode = 400;
+                return error;
+            });
+
+        return response.json(publication);
+    }
+
+    public async cancelVacancies(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
+        const { id_user } = request.params;
+        const { id, statusPublication } = await request.body;
+
+        const updateStatusPublicationService =
+            new UpdateStatusPublicationService();
+
+        const publication = await updateStatusPublicationService
+            .execute({
+                id_user,
+                id,
+                statusPublication,
             })
             .catch(error => {
                 response.statusCode = 400;

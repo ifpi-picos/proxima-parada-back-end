@@ -26,4 +26,10 @@ publicationRouter.put(
     publicationsController.updateVacancies,
 );
 
+publicationRouter.put(
+    "/update/status/:id_user",
+    isAuthenticated,
+    publicationsController.cancelVacancies,
+);
+
 export default publicationRouter;

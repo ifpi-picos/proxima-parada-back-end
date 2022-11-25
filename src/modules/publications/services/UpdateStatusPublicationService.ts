@@ -2,18 +2,18 @@ import { Publication } from "@prisma/client";
 import { prismaClient } from "../../../database/prismaClient";
 import AppError from "../../../shared/errors/AppError";
 
-interface IVacanciesToUpdate {
+interface IStatusPublicationToUpdate {
     id_user: string;
     id: string;
-    vacancies: boolean;
+    statusPublication: boolean;
 }
 
-class UpdateVacanciesPublicationService {
+class UpdateStatusPublicationService {
     public async execute({
         id_user,
         id,
-        vacancies,
-    }: IVacanciesToUpdate): Promise<Publication> {
+        statusPublication,
+    }: IStatusPublicationToUpdate): Promise<Publication> {
         const userExists = await prismaClient.user.findUnique({
             where: {
                 id: id_user,
@@ -36,7 +36,7 @@ class UpdateVacanciesPublicationService {
 
         const publication = await prismaClient.publication.update({
             data: {
-                vacancies: vacancies,
+                statusPublication: statusPublication,
             },
             where: {
                 id: id,
@@ -47,4 +47,4 @@ class UpdateVacanciesPublicationService {
     }
 }
 
-export default UpdateVacanciesPublicationService;
+export default UpdateStatusPublicationService;
