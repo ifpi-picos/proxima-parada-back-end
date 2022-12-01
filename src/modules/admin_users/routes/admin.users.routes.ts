@@ -15,4 +15,6 @@ adminUsersRouter.put(
     adminUsersController.updateStatusRequest,
 );
 
+adminUsersRouter.get("/statistics", adminUsersController.countNumberUsers);
+
 export default adminUsersRouter;

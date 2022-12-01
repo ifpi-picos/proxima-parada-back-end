@@ -120,4 +120,23 @@ export default class AdminUsersController {
 
         return response.json(statusRequest);
     }
+
+    public async countNumberUsers(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
+        const userCount = await prismaClient.user.count();
+        const driverCount = await prismaClient.user.count({
+            where: {
+                status: true,
+            },
+        });
+        const postsCount = await prismaClient.publication.count();
+        const statistics = {
+            users: userCount,
+            drivers: driverCount,
+            publications: postsCount,
+        };
+        return response.json(statistics);
+    }
 }

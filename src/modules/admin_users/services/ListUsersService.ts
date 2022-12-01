@@ -37,7 +37,24 @@ class ListUsersService {
             },
         });
 
-        return users;
+        const usersReturn = [];
+        for (let i = 0; i < users.length; i++) {
+            usersReturn.push({
+                id: users[i].id,
+                name: users[i].name,
+                email: users[i].email,
+                phone_number: users[i].phone_number,
+                occupation: users[i].occupation,
+                avatar: users[i].avatar,
+                status: users[i].status,
+                level: users[i].level,
+                Vehicle: users[i].Vehicle,
+                StatusRequest: users[i].StatusRequest,
+                expand: false,
+            });
+        }
+
+        return usersReturn;
     }
 }
 
