@@ -6,8 +6,10 @@ interface IUserId {
     id: string;
 }
 
+type StatusRequestToReturn = Omit<StatusRequest, "statusDescriptionDenied">;
+
 class CreateStatusRequestService {
-    public async execute({ id }: IUserId): Promise<StatusRequest> {
+    public async execute({ id }: IUserId): Promise<StatusRequestToReturn> {
         const user = await prismaClient.user.findUnique({
             where: {
                 id: id,
