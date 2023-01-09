@@ -66,13 +66,14 @@ model Vehicle {
 }
 
 model StatusRequest {
-    id         String   @id @unique @default(uuid())
-    status     Boolean? @default(false)
-    readed     Boolean? @default(false)
-    id_user    String   @unique
-    user       User     @relation(fields: [id_user], references: [id])
-    created_at DateTime @default(now())
-    updated_at DateTime @default(now())
+    id                      String   @id @unique @default(uuid())
+    status                  Boolean? @default(false)
+    readed                  Boolean? @default(false)
+    statusDescriptionDenied String?
+    id_user                 String   @unique
+    user                    User     @relation(fields: [id_user], references: [id])
+    created_at              DateTime @default(now())
+    updated_at              DateTime @default(now())
 
     @@map("status_request")
 }
