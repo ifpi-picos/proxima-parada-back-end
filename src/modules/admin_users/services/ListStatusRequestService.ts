@@ -1,8 +1,10 @@
 import { StatusRequest } from "@prisma/client";
 import { prismaClient } from "../../../database/prismaClient";
 
+type StatusRequestToReturn = Omit<StatusRequest, "statusDescriptionDenied">;
+
 class ListStatusRequestService {
-    public async execute(): Promise<StatusRequest[]> {
+    public async execute(): Promise<StatusRequestToReturn[]> {
         const statusRequest = await prismaClient.statusRequest.findMany({
             orderBy: {
                 created_at: "desc",
