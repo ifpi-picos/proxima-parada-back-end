@@ -1,6 +1,7 @@
 import AppError from "../../../shared/errors/AppError";
 import { User } from "@prisma/client";
 import { prismaClient } from "../../../database/prismaClient";
+import { utcToZonedTime } from "date-fns-tz";
 
 interface IRequest {
     id_user: string;
@@ -42,6 +43,10 @@ class UpdateUserAvatarService {
             throw new AppError("Usuário não encontrado.");
         }
 
+        const date = new Date();
+
+        const registrationDate = utcToZonedTime(date, "America/Sao_Paulo");
+
         const userToReturn = await prismaClient.user.update({
             select: {
                 id: true,
@@ -52,6 +57,8 @@ class UpdateUserAvatarService {
                 avatar: true,
                 status: true,
                 level: true,
+                created_at: true,
+                updated_at: true,
                 Vehicle: {
                     select: {
                         id: true,
@@ -66,6 +73,7 @@ class UpdateUserAvatarService {
             },
             data: {
                 avatar: firebaseAvatarUrl,
+                updated_at: registrationDate,
             },
         });
 
