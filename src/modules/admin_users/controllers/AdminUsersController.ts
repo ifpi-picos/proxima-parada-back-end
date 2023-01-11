@@ -106,13 +106,13 @@ export default class AdminUsersController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { id_user, status } = request.body;
+        const { id_user, status, statusDescriptionDenied } = request.body;
         const { id } = request.params;
 
         const updateStatusRequest = new UpdateStatusRequestService();
 
         const statusRequest = await updateStatusRequest
-            .execute({ id, id_user, status })
+            .execute({ id, id_user, status, statusDescriptionDenied })
             .catch(error => {
                 response.statusCode = 400;
                 return error;
