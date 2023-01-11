@@ -70,7 +70,7 @@ model StatusRequest {
     status                  Boolean? @default(false)
     readed                  Boolean? @default(false)
     statusDescriptionDenied String?
-    id_user                 String   @unique
+    id_user                 String
     user                    User     @relation(fields: [id_user], references: [id])
     created_at              DateTime @default(now())
     updated_at              DateTime @default(now())

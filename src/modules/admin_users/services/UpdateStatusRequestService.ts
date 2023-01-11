@@ -6,6 +6,7 @@ interface IStatusRequestToUpdate {
     id: string;
     id_user: string;
     status: boolean;
+    statusDescriptionDenied: string;
 }
 
 class UpdateStatusRequestService {
@@ -13,6 +14,7 @@ class UpdateStatusRequestService {
         id,
         id_user,
         status,
+        statusDescriptionDenied,
     }: IStatusRequestToUpdate): Promise<StatusRequest> {
         const statusRequest = await prismaClient.statusRequest.findUnique({
             where: {
@@ -41,6 +43,15 @@ class UpdateStatusRequestService {
                 },
                 where: {
                     id: id_user,
+                },
+            });
+        } else {
+            await prismaClient.statusRequest.update({
+                where: {
+                    id: id,
+                },
+                data: {
+                    statusDescriptionDenied: statusDescriptionDenied,
                 },
             });
         }

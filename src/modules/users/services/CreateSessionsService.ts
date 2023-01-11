@@ -77,6 +77,7 @@ class CreateSessionsService {
                         id: true,
                         status: true,
                         readed: true,
+                        statusDescriptionDenied: true,
                         id_user: true,
                     },
                 },
