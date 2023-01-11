@@ -2,6 +2,7 @@ import { prismaClient } from "../../../database/prismaClient";
 import AppError from "../../../shared/errors/AppError";
 import { hash } from "bcryptjs";
 import { User } from "@prisma/client";
+import { utcToZonedTime } from "date-fns-tz";
 
 interface IUserToCreate {
     name: string;
@@ -11,7 +12,7 @@ interface IUserToCreate {
     occupation: string;
 }
 
-type UserCreated = Omit<User, "password" | "created_at" | "updated_at">;
+type UserCreated = Omit<User, "password">;
 
 class CreateUserService {
     public async execute({
@@ -58,6 +59,10 @@ class CreateUserService {
 
         const hashedPassword = await hash(password, 8);
 
+        const date = new Date();
+
+        const registrationDate = utcToZonedTime(date, "America/Sao_Paulo");
+
         const user = await prismaClient.user.create({
             select: {
                 id: true,
@@ -68,6 +73,8 @@ class CreateUserService {
                 avatar: true,
                 status: true,
                 level: true,
+                created_at: true,
+                updated_at: true,
                 Vehicle: {
                     select: {
                         id: true,
@@ -93,7 +100,8 @@ class CreateUserService {
                 email,
                 password: hashedPassword,
                 occupation,
-            } as IUserToCreate,
+                created_at: registrationDate,
+            },
         });
 
         return user;
