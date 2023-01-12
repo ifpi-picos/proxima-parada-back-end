@@ -78,7 +78,6 @@ class ListPublicationsService {
                 vacancies: publications[i].vacancies,
                 DestinationAddress: publications[i].DestinationAddress,
                 OriginAddress: publications[i].OriginAddress,
-                expand: false,
             });
         }
 

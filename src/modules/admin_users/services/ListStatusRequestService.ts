@@ -17,6 +17,7 @@ class ListStatusRequestService {
                 status: true,
                 readed: true,
                 id_user: true,
+                statusDescriptionDenied: true,
                 created_at: true,
                 updated_at: true,
                 user: {
