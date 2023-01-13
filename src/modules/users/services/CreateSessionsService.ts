@@ -33,19 +33,36 @@ class CreateSessionsService {
             },
         });
 
-        console.log(!user);
-
         if (!user) {
             throw new AppError("Combinação incorreta de e-mail/senha.", 401);
         }
-
-        console.log("Teste");
 
         const passwordConfirmed = await compare(password, user.password);
 
         if (!passwordConfirmed) {
             throw new AppError("Combinação incorreta de e-mail/senha.", 401);
         }
+
+        /* console.log("testando login");
+        if (!user) {
+            console.log("testando retorno de erro para login 1: email");
+            return {
+                statusCode: 401,
+                message: "Combinação incorreta de e-mail/senha.",
+            };
+            //throw new AppError("Combinação incorreta de e-mail/senha.", 401);
+        }
+
+        const passwordConfirmed = await compare(password, user.password);
+
+        if (!passwordConfirmed) {
+            console.log("testando retorno de erro para login 1: senha");
+            return {
+                statusCode: 401,
+                message: "Combinação incorreta de e-mail/senha.",
+            };
+            //throw new AppError("Combinação incorreta de e-mail/senha.", 401);
+        } */
 
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const token = sign({ sub: user.id }, process.env.JWT_SECRET as string, {

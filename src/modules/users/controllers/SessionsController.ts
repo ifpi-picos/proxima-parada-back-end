@@ -28,5 +28,19 @@ export default class SessionsController {
         });
 
         return response.json(user.userReturn);
+
+        /* if (user.id) {
+            response.cookie("token", user.token, {
+                maxAge: new Date(Date.now() + 999999999).getTime(),
+                httpOnly: true,
+                sameSite: "none",
+                secure: true,
+            });
+
+            return response.json(user.userReturn);
+        } else {
+            response.status(user.statusCode);
+            return response.send(user.message);
+        } */
     }
 }
