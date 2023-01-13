@@ -1,3 +1,4 @@
+import { utcToZonedTime } from "date-fns-tz";
 import { prismaClient } from "../../../database/prismaClient";
 import AppError from "../../../shared/errors/AppError";
 
@@ -32,6 +33,10 @@ class UpdateUserService {
             throw new AppError("Usuário não encontrado.");
         }
 
+        const date = new Date();
+
+        const registrationDate = utcToZonedTime(date, "America/Sao_Paulo");
+
         const userUpdated = await prismaClient.user.update({
             select: {
                 id: true,
@@ -42,6 +47,8 @@ class UpdateUserService {
                 avatar: true,
                 status: true,
                 level: true,
+                created_at: true,
+                updated_at: true,
                 Vehicle: {
                     select: {
                         id: true,
@@ -69,6 +76,7 @@ class UpdateUserService {
                 name: name,
                 phone_number: phone_number,
                 occupation: occupation,
+                updated_at: registrationDate,
             },
         });
 

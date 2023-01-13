@@ -20,8 +20,8 @@ model User {
     avatar        String?         @unique
     status        Boolean?        @default(false)
     level         Boolean?        @default(false)
-    created_at    DateTime        @default(now())
-    updated_at    DateTime        @default(now())
+    created_at    DateTime
+    updated_at    DateTime?
     Vehicle       Vehicle[]
     StatusRequest StatusRequest[]
     Publication   Publication[]
@@ -66,14 +66,14 @@ model Vehicle {
 }
 
 model StatusRequest {
-    id                      String   @id @unique @default(uuid())
-    status                  Boolean? @default(false)
-    readed                  Boolean? @default(false)
+    id                      String    @id @unique @default(uuid())
+    status                  Boolean?  @default(false)
+    readed                  Boolean?  @default(false)
     statusDescriptionDenied String?
     id_user                 String
-    user                    User     @relation(fields: [id_user], references: [id])
-    created_at              DateTime @default(now())
-    updated_at              DateTime @default(now())
+    user                    User      @relation(fields: [id_user], references: [id])
+    created_at              DateTime?
+    updated_at              DateTime?
 
     @@map("status_request")
 }
