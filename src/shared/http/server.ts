@@ -28,11 +28,22 @@ app.get("/api", (request, response) => {
 });
 
 app.use(
-    (error: any, request: Request, response: Response, next: NextFunction) => {
-        console.log(error);
-        return response.status((error as AppError).statusCode ?? 500).send({
-            message: (error as AppError).message,
-            statusCode: (error as AppError).statusCode ?? 500,
+    (
+        error: Error,
+        request: Request,
+        response: Response,
+        next: NextFunction,
+    ) => {
+        if (error instanceof AppError) {
+            response.status(error.statusCode).json({
+                status: "error",
+                message: error.message,
+            });
+        }
+
+        return response.status(500).json({
+            status: "error",
+            message: "Internal server error.",
         });
     },
 );

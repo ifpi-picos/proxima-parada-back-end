@@ -27,6 +27,6 @@ export default class SessionsController {
             secure: true,
         });
 
-        return response.json(user.userReturn);
+        return response.json(user.userToReturn);
     }
 }
