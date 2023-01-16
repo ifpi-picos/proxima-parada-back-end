@@ -1,4 +1,5 @@
 import { StatusRequest } from "@prisma/client";
+import { utcToZonedTime } from "date-fns-tz";
 import { prismaClient } from "../../../database/prismaClient";
 import AppError from "../../../shared/errors/AppError";
 
@@ -36,6 +37,10 @@ class UpdateStatusRequestService {
             throw new AppError("Usuário não encontrado.");
         }
 
+        const date = new Date();
+
+        const updateDate = utcToZonedTime(date, "America/Sao_Paulo");
+
         if (status === true) {
             await prismaClient.user.update({
                 data: {
@@ -63,6 +68,7 @@ class UpdateStatusRequestService {
             data: {
                 status: status,
                 readed: true,
+                updated_at: updateDate,
             },
         });
 
