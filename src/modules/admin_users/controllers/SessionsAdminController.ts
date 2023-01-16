@@ -10,22 +10,22 @@ export default class SessionsAdminController {
 
         const createAdminSession = new CreateSessionsAdminService();
 
-        const admin = await createAdminSession
-            .execute({
+        try {
+            const admin = await createAdminSession.execute({
                 email,
                 password,
-            })
-            .catch(error => {
-                response.statusCode = 401;
-                return error;
             });
-        response.cookie("token", admin.token, {
-            maxAge: new Date(Date.now() + 999999999).getTime(),
-            httpOnly: true,
-            sameSite: "none",
-            secure: true,
-        });
+            response.cookie("token", admin.token, {
+                maxAge: new Date(Date.now() + 999999999).getTime(),
+                httpOnly: true,
+                sameSite: "none",
+                secure: true,
+            });
 
-        return response.json(admin.adminReturn);
+            return response.json(admin.adminReturn);
+        } catch (error) {
+            response.statusCode = 401;
+            return response.json(error);
+        }
     }
 }

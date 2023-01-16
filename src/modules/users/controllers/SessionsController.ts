@@ -10,23 +10,23 @@ export default class SessionsController {
 
         const createSession = new CreateSessionsService();
 
-        const user = await createSession
-            .execute({
+        try {
+            const user = await createSession.execute({
                 email,
                 password,
-            })
-            .catch(error => {
-                response.statusCode = 401;
-                return error;
             });
 
-        response.cookie("token", user.token, {
-            maxAge: new Date(Date.now() + 999999999).getTime(),
-            httpOnly: true,
-            sameSite: "none",
-            secure: true,
-        });
+            response.cookie("token", user.token, {
+                maxAge: new Date(Date.now() + 999999999).getTime(),
+                httpOnly: true,
+                sameSite: "none",
+                secure: true,
+            });
 
-        return response.json(user.userToReturn);
+            return response.json(user.userReturn);
+        } catch (error: any) {
+            response.statusCode = 401;
+            return response.json(error);
+        }
     }
 }
