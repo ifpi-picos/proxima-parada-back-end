@@ -33,6 +33,17 @@ class UpdateUserService {
             throw new AppError("Usuário não encontrado.");
         }
 
+        const phoneNumberExists = await prismaClient.user.findUnique({
+            where: {
+                phone_number,
+            },
+        });
+
+        // eslint-disable-next-line no-extra-boolean-cast
+        if (!!phoneNumberExists) {
+            throw new AppError("Número já utilizado por outro usuário.");
+        }
+
         const date = new Date();
 
         const registrationDate = utcToZonedTime(date, "America/Sao_Paulo");
