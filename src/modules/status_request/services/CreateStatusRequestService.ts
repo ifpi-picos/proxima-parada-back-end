@@ -1,4 +1,5 @@
 import { StatusRequest } from "@prisma/client";
+import { utcToZonedTime } from "date-fns-tz";
 import { prismaClient } from "../../../database/prismaClient";
 import AppError from "../../../shared/errors/AppError";
 
@@ -31,6 +32,10 @@ class CreateStatusRequestService {
                 "Este usuário não possui um veículo cadastrado.",
             );
         }
+
+        const date = new Date();
+
+        const registrationDate = utcToZonedTime(date, "America/Sao_Paulo");
 
         const statusRequest = await prismaClient.statusRequest.create({
             select: {
@@ -66,6 +71,7 @@ class CreateStatusRequestService {
             },
             data: {
                 id_user: id,
+                created_at: registrationDate,
             },
         });
 
