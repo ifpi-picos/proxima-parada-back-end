@@ -8,6 +8,7 @@ class AppError {
     }
 
     toJson() {
+        console.log("testando retorno de erro para login 2: ", this.statusCode);
         return {
             statusCode: this.statusCode,
             message: this.message,

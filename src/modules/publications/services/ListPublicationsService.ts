@@ -20,6 +20,7 @@ class ListPublicationsService {
                         name: true,
                         avatar: true,
                         occupation: true,
+                        phone_number: true,
                         Vehicle: {
                             select: {
                                 vehicle_type: true,

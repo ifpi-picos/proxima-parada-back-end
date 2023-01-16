@@ -3,12 +3,10 @@ import CreateUserService from "../services/CreateUserService";
 import ListPublicationsService from "../services/ListPublicationsService";
 import ShowUserService from "../services/ShowUserService";
 import UpdateUserService from "../services/UpdateUserService";
+import SessionsController from "./SessionsController";
 
 export default class UsersController {
-    public async create(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
+    public async create(request: Request, response: Response) {
         const { name, email, password, samePasswords, occupation } =
             request.body;
 
@@ -27,7 +25,14 @@ export default class UsersController {
                 return error;
             });
 
-        return response.json(user);
+        if (user.id) {
+            const session = new SessionsController();
+            session.create(request, response);
+        } else {
+            return response.json(user);
+        }
+
+        //return response.json(user);
     }
 
     public async update(
