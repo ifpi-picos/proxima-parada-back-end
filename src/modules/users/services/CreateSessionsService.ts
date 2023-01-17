@@ -98,7 +98,12 @@ class CreateSessionsService {
                         status: true,
                         readed: true,
                         statusDescriptionDenied: true,
+                        created_at: true,
                         id_user: true,
+                    },
+                    take: 1,
+                    orderBy: {
+                        created_at: "desc",
                     },
                 },
             },
