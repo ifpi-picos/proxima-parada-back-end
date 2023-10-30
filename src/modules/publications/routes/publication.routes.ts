@@ -12,7 +12,7 @@ publicationRouter.get(
     isAuthenticated,
     publicationsController.indexPublications,
 );
-publicationRouter.get("/:id", publicationsController.show);
+publicationRouter.get("/:id", isAuthenticated, publicationsController.show);
 
 publicationRouter.put(
     "/update/:id_user",
