@@ -1,10 +1,9 @@
-import * as dotenv from "dotenv";
+import dotenv from "dotenv";
 import express, { NextFunction, Request, Response } from "express";
 import routes from "./routes";
 import cors from "cors";
 import AppError from "../errors/AppError";
 import cookieParser from "cookie-parser";
-import { IConstants } from "../constants";
 import helmet from "helmet";
 
 dotenv.config();

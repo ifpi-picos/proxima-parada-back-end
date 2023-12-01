@@ -3,12 +3,9 @@ import UpdateUserAvatarService from "../services/UpdateUserAvatarService";
 import admin, { ServiceAccount } from "firebase-admin";
 import serviceAccount from "../../../config/firebase-key.json";
 import AppError from "../../../shared/errors/AppError";
-import { getConstants } from "../../../shared/constants";
 const BUCKET = "proxima-parada-storage.appspot.com";
 
-
-
-serviceAccount.private_key = getConstants().firebasePrivateKey!.toString().replace(
+serviceAccount.private_key = process.env.FIREBASE_PRIVATE_KEY!.replace(
     /\\n/g,
     "\n",
 );
