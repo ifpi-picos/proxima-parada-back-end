@@ -1,5 +1,6 @@
 # Próxima Parada
-Repositório referente a disciplina de projeto integrador II, o qual tem como objetivo final o desenvolvimento de um sistema que facilite o compartilhamento de caronas.
+Repositório referente a disciplina de projeto integrador II, o qual tem como objetivo final o desenvolvimento da api de um sistema que facilite o compartilhamento de caronas.
+O Repoisitori do front-end do projeto pode ser encontrado em [Proxima Parada front-end](https://github.com/ifpi-picos/proxima-parada-front-end-vue)
 
 # Nodemon
 O [nodemon](https://nodemon.io/) é uma biblioteca de código aberto que ajuda bastante no processo de desenvolvimento. A função dele é monitorar alterações no código, e apartir do momento que você salva essas mudanças, o nodemon reinicia o servidor automaticamente.
